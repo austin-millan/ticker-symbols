@@ -1,5 +1,4 @@
 package main
-// The following directive is necessary to make the package coherent:
 
 //go:generate go run gen.go
 
@@ -51,20 +50,12 @@ func fetchFtpFile(fname string) ([]byte, error) {
 	defer r.Close()
 
 	buf, err := ioutil.ReadAll(r)
-	stringified := string(buf)
-	_ = stringified
 	// Do something with the FTP conn
 	if err = c.Quit(); err != nil {
 		log.Fatal(err)
 	}
 	return buf, nil
 }
-
-//func die(err error) {
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//}
 
 // parse a csv file and return an array of resources
 func parse(r io.Reader) chan ret {
@@ -273,7 +264,6 @@ func main() {
 	f.Close()
 
 	f, err = os.Create("go/other/other.go")
-	defer f.Close()
 	goTemplate.Execute(f, struct {
 		Package string
 		Timestamp time.Time
