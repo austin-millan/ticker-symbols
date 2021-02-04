@@ -20,10 +20,11 @@ package main
 import (
 	"fmt"
 	"gitlab.com/brokerage-api/ticker-symbols/go/nasdaq"
+	"gitlab.com/brokerage-api/ticker-symbols/go/other"
 )
 
 func main() {
-	fmt.Printf(nasdaq.ACEV)
+	fmt.Print([]string{nasdaq.TSLA, other.AMC, other.GME})
 }
 ```
 
