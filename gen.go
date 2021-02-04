@@ -251,7 +251,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	f.Close()
 	goTemplate.Execute(f, struct {
 		Package string
 		Timestamp time.Time
