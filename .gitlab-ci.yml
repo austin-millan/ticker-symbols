@@ -1,0 +1,26 @@
+image: golang:latest
+
+stages:
+  - release
+  - latest
+
+release:
+  stage: release
+  image: golang:latest
+  only:
+    - dev
+    - schedules
+  script:
+    - go env
+    - echo "configuring git..."
+    - git config --global user.email "cicd@gitlab.com"
+    - git config --global user.name "GitLab CI/CD"
+    - echo "running go generate..."
+    - go generate
+    - echo "committing and pushing changes to the repository..."
+    - git add -A
+    - git commit -m "CI/CD commit"
+    - echo "setting remote url with access token..."
+    - git remote add gitlab_origin https://oauth2:$GITLAB_TOKEN@gitlab.com/brokerage-api/ticker-symbols.git
+    - echo "pushing..."
+    - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
