@@ -2,14 +2,13 @@ image: golang:latest
 
 stages:
   - release
-  - latest
 
 release:
   stage: release
   image: golang:latest
   only:
-    - dev
     - schedules
+    - master
   script:
     - go env
     - echo "configuring git..."
