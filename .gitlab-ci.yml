@@ -8,7 +8,6 @@ release:
   image: golang:latest
   only:
     - schedules
-    - master
   script:
     - go env
     - echo "configuring git..."
