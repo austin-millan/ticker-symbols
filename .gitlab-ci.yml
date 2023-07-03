@@ -19,6 +19,6 @@ release:
     - git add -A
     - git commit -m "CI/CD commit"
     - echo "setting remote url with access token..."
-    - git remote add gitlab_origin https://oauth2:$GITLAB_TOKEN@gitlab.com/brokerage-api/ticker-symbols.git
+    - git remote set-url gitlab_origin https://oauth2:$GITLAB_TOKEN@gitlab.com/brokerage-api/ticker-symbols.git
     - echo "pushing..."
     - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
